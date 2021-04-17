@@ -1,0 +1,28 @@
+footer{
+    background-color: #1b1b83;
+    color: #fff;
+}
+.company-links ul{
+    list-style: none;
+    padding: 10px;
+}
+.company-links ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+}
+.social-media{
+    list-style: none;
+    padding: 0;
+}
+.social-media li{
+    display: inline-block;
+    padding-right: 15px;
+}
+.social-media li a{
+    text-decoration: none;
+    color: #fff;
+}
+.social-media li  a i{
+    font-size: 28px;
+}

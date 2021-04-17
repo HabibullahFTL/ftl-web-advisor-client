@@ -1,0 +1,20 @@
+.team-member{
+    border-radius: 10px;
+    padding: 15px;
+}
+.team-member img{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    display: block;
+}
+.team-member h4{
+    padding: 5px 0;
+    margin: 0;
+    text-align: center;
+}
+.team-member p{
+    margin: 0;
+    text-align: center;
+    padding: 0;
+}

@@ -1,0 +1,23 @@
+.wehave-section .section-title::before{
+    content: "We Have";
+    background-color: #fff;
+}
+.custom-iconbox{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    background-color: #e9e9f8;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.custom-iconbox i{
+    font-size: 45px;
+}
+.highlighted-text{
+    color: #1f1fa5;
+    font-weight: 700;
+    border-radius: 20px;
+}

@@ -1,0 +1,10 @@
+.services-section{
+    background-color: #e9e9f8;
+}
+.services-section .section-title::after{
+    width: 270px;
+}
+.services-section .section-title::before{
+    content: "Our Services";
+    background-color: #e9e9f8;
+}

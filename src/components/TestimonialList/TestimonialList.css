@@ -1,0 +1,10 @@
+.testimonial-section{
+    background-color: #e9e9f8;
+}
+.testimonial-section .section-title::after{
+    width: 270px;
+}
+.testimonial-section .section-title::before{
+    content: "Testimonials";
+    background-color: #e9e9f8;
+}

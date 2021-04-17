@@ -1,0 +1,45 @@
+
+.section-child{
+    min-height: 500px;
+    height: 100%;
+    z-index: -2;
+}
+.home-section h1{
+    font-size: 50px;
+    line-height: 100px;
+    font-weight: 700;
+}
+.brand-name{
+    display: block;
+}
+.btn-contact{
+    font-size: 20px;
+    width: 200px;
+}
+
+@media screen and (max-width:991px) {
+    .home-section h1{
+        font-size: 40px;
+        line-height: 60px;
+    }
+    .section-child{
+        min-height: 400px;
+        height: 100%;
+        z-index: -2;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .home-section h1{
+        font-size: 30px;
+        line-height: 50px;
+    }
+    .section-child{
+        align-items: center;
+    }
+    .section-child{
+        min-height: 400px;
+        height: 100%;
+        z-index: -2;
+    }
+}

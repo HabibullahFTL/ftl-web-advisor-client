@@ -1,0 +1,10 @@
+.ourteam-section{
+    background-color: #fff;
+}
+.ourteam-section .section-title::after{
+    width: 240px;
+}
+.ourteam-section .section-title::before{
+    content: "Our Team";
+    background-color: #fff;
+}

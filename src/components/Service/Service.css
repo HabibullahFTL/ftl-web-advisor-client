@@ -1,0 +1,67 @@
+.service{
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+}
+.service:hover .service-details{
+    height: 100%;
+}
+.service-details{
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    height:60px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.521);
+    transition: all .2s ease;
+}
+.service-title{
+    text-align: center;
+    display: block;
+    font-size: 18px;
+    padding-bottom: 15px;
+}
+.service-description{
+    display: block;
+    position: relative;
+    left: -200%;
+    transition: all .3s ease;
+    font-size: 15px;
+}
+.service-details:hover .service-description{
+    display: block;
+    left: 0;
+}
+.service-details:hover .service-title{
+    border-bottom: 1px solid #fff;
+}
+.service-details .btn-purple{
+    position: relative;
+    right: -200%;
+    transition: all .3s ease;
+    max-width: 75%;
+    margin: auto;
+}
+.service-details:hover .btn-purple{
+    display: block;
+    right: 0;
+}
+@media screen and (max-width:991px) {
+    .service-details:hover hr{
+        height: 2px;
+        background-color: #fff;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .service-title{
+        text-align: center;
+        display: block;
+        font-size: 14px;
+    }
+    .service-details:hover hr{
+        height: 0!important;
+    }
+}

@@ -1,0 +1,23 @@
+.testimonial{
+    padding: 15px;
+    border-radius: 10px;
+}
+.reviewer-details{
+    display: grid;
+    grid-template-columns: 60px 1fr;
+}
+.reviewer-photo{
+    width: 50px;
+    background-color: #fff;
+}
+.reviewer-details h6{
+    font-size: 15px;
+    font-weight: 700;
+}
+.reviewer-details p{
+    font-size: 13px;
+    margin: 0;
+}
+.review-message{
+    font-size: 14px;
+}

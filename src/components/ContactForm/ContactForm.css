@@ -1,0 +1,12 @@
+.contact-section{
+    background-color: #e9e9f8;
+    border-radius: 10px;
+}
+.contact-section h2{
+    font-weight: 800;
+    padding: 15px 0;
+}
+
+.contact-section .form-control{
+    padding: 10px;
+}
