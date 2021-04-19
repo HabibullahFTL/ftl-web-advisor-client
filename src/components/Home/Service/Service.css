@@ -24,14 +24,12 @@
     padding-bottom: 15px;
 }
 .service-description{
-    display: block;
     position: relative;
     left: -200%;
     transition: all .3s ease;
     font-size: 15px;
 }
 .service-details:hover .service-description{
-    display: block;
     left: 0;
 }
 .service-details:hover .service-title{

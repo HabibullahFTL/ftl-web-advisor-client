@@ -2,7 +2,6 @@
 .section-child{
     min-height: 500px;
     height: 100%;
-    z-index: -2;
 }
 .home-section h1{
     font-size: 50px;
@@ -25,7 +24,6 @@
     .section-child{
         min-height: 400px;
         height: 100%;
-        z-index: -2;
     }
 }
 
@@ -40,6 +38,5 @@
     .section-child{
         min-height: 400px;
         height: 100%;
-        z-index: -2;
     }
 }

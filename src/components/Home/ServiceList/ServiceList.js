@@ -2,7 +2,7 @@ import React from 'react';
 import Service from '../Service/Service';
 import './ServiceList.css';
 
-const Services = () => {
+const ServiceList = () => {
     return (
         <section className="services-section">
             <div className="container py-3">
@@ -18,4 +18,4 @@ const Services = () => {
     );
 };
 
-export default Services;
+export default ServiceList;

@@ -1,5 +1,5 @@
 import React from 'react';
-import reviewer from '../../img/logo-circle.png';
+import reviewer from '../../../img/logo-circle.png';
 import './Testimonial.css';
 
 const Testimonial = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import './TeamMember.css';
-import reviewer from '../../img/logo-circle.png';
+import reviewer from '../../../img/logo-circle.png';
 
 const TeamMember = () => {
     return (
