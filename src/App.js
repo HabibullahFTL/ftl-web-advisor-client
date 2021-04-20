@@ -18,6 +18,7 @@ import AddAdmin from './components/Dashboard/AddAdmin/AddAdmin';
 import ViewAdmins from './components/Dashboard/ViewAdmins/ViewAdmins';
 import CreateReview from './components/Dashboard/CreateReview/CreateReview';
 import MyOrders from './components/Dashboard/MyOrders/MyOrders';
+import BookingService from './components/BookingService/BookingService';
 
 
 export const UserContext = createContext();
@@ -95,6 +96,11 @@ function App() {
               <Dashboard pageTitle="All the reviews">
                 <CreateReview/>
               </Dashboard>
+            </Route>
+            <Route path="/booking/service/:serviceId">
+              <NavBar />
+              <BookingService/>
+              <Footer />
             </Route>
             <Route path="/login">
               <NavBar />

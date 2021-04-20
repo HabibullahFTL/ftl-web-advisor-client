@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const AllOrders = () => {
+    const [orders, setOrders] = useState();
+    useEffect(() => {
+        fetch('https://nameless-fjord-98328.herokuapp.com/all-orders')
+            .then(res => res.json())
+            .then(data => setOrders(data))
+    }, [])
+
     const handleServiceStatus = (e) => {
         console.log(e.target.getAttribute('data-orderid'));
-
+        console.log(orders);
     }
     return (
-        <table class="table">
+        <table className="table">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -18,20 +25,26 @@ const AllOrders = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Mark</td>
-                    <td>Otto@gmail.com</td>
-                    <td>Web Development</td>
-                    <td>Credit Card</td>
-                    <td>20-05-2001</td>
-                    <td>
-                        <select id="orderStatus" data-orderid="123" onChange={handleServiceStatus}>
-                            <option value="pending">Pending</option>
-                            <option value="done">Done</option>
-                            <option value="on-going">On Going</option>
-                        </select>
-                    </td>
-                </tr>
+                {
+                    orders?.map(order => {
+                        return (
+                            <tr key={order._id}>
+                                <td>{order.customerName}</td>
+                                <td>{order.email}</td>
+                                <td>{order.serviceDetails?.serviceTitle}</td>
+                                <td>{order.paymentDetails.type} [{order.paymentDetails.card.brand}]</td>
+                                <td>{order?.orderedAt}</td>
+                                <td>
+                                    <select id="orderStatus" data-orderid={order._id} onChange={handleServiceStatus}>
+                                        <option value="pending">Pending</option>
+                                        <option value="done">Done</option>
+                                        <option value="on-going">On Going</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        )
+                    })
+                }
             </tbody>
         </table>
     );

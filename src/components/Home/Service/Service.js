@@ -1,19 +1,19 @@
 import React from 'react';
-import product from '../../../img/product.jpg';
 import './Service.css';
 
-const Service = () => {
+const Service = ({service}) => {
+    const {_id,serviceTitle,serviceDescription,serviceFee,photo} = service;
     return (
         <div className="col-md-6 col-lg-4">
             <div className="m-2 shadow bg-white service">
-                <img src={product} alt="" className="img-fluid rounded"/>
+                <img src={photo} alt="" className="img-fluid rounded"/>
                 <div className="service-details">
-                    <h2 className="service-title">Web Development</h2>
+                    <h2 className="service-title">{serviceTitle}</h2>
                     
                     <div className="service-description">
-                        <h5>$150</h5>
-                        <p>We are giving best website developmnet...</p></div>
-                    <a href="#" className="btn btn-purple d-block"><i className="fas fa-shopping-cart"></i> Take our service</a>
+                        <h5>${serviceFee}</h5>
+                        <p>{serviceDescription}</p></div>
+                    <a href={"/booking/service/"+_id} className="btn btn-purple d-block"><i className="fas fa-shopping-cart"></i> Take the service</a>
                 </div>
             </div>
         </div>
