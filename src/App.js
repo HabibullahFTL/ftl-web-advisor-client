@@ -19,16 +19,13 @@ import ViewAdmins from './components/Dashboard/ViewAdmins/ViewAdmins';
 import CreateReview from './components/Dashboard/CreateReview/CreateReview';
 import MyOrders from './components/Dashboard/MyOrders/MyOrders';
 import BookingService from './components/BookingService/BookingService';
+import ViewReviews from './components/Dashboard/ViewReviews/ViewReviews';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 
 export const UserContext = createContext();
 
 function App() {
-  useEffect(() => {
-    fetch('https://nameless-fjord-98328.herokuapp.com/')
-      .then(res => res.json())
-      .then(data => console.log(data))
-  }, [])
   const [loginUserDetails, setLoginUserDetails] = useState({
     isSignIn: false,
     name: '',
@@ -37,6 +34,18 @@ function App() {
     uid: null,
     errMessage: ''
   });
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    fetch('https://nameless-fjord-98328.herokuapp.com/all-admin')
+      .then(res => res.json())
+      .then(data => {
+        const adminFinding = data.find(admin => admin.email === loginUserDetails.email);
+        if (adminFinding) {
+          setIsAdmin(true);
+        };
+      })
+  }, [loginUserDetails.email])
 
   const getDataFromLS = (tokenName) => {
     let data = localStorage.getItem(tokenName);
@@ -52,56 +61,62 @@ function App() {
       <Router>
         <div onLoad={() => getDataFromLS('user')}>
           <Switch>
-            <Route path="/dashboard">
+            <PrivateRoute path="/dashboard">
+              {
+                isAdmin ?
+                  <Dashboard pageTitle="All Order List">
+                    <AllOrders />
+                  </Dashboard> :
+                  <Dashboard pageTitle="My Orders">
+                    <MyOrders />
+                  </Dashboard>
+              }
+            </PrivateRoute>
+            <PrivateRoute path="/all-order">
               <Dashboard pageTitle="All Order List">
                 <AllOrders />
               </Dashboard>
-            </Route>
-            <Route path="/all-order">
-              <Dashboard pageTitle="All Order List">
-                <AllOrders />
-              </Dashboard>
-            </Route>
-            <Route path="/my-orders">
+            </PrivateRoute>
+            <PrivateRoute path="/my-orders">
               <Dashboard pageTitle="My Orders">
-                <MyOrders/>
+                <MyOrders />
               </Dashboard>
-            </Route>
-            <Route path="/add-new-service">
+            </PrivateRoute>
+            <PrivateRoute path="/add-new-service">
               <Dashboard pageTitle="Create New Service">
                 <CreateService />
               </Dashboard>
-            </Route>
-            <Route path="/manage-services">
+            </PrivateRoute>
+            <PrivateRoute path="/manage-services">
               <Dashboard pageTitle="Manage Services">
-                <ManageServices/>
+                <ManageServices />
               </Dashboard>
-            </Route>
-            <Route path="/add-new-admin">
+            </PrivateRoute>
+            <PrivateRoute path="/add-new-admin">
               <Dashboard pageTitle="Add New Admin">
-                <AddAdmin/>
+                <AddAdmin />
               </Dashboard>
-            </Route>
-            <Route path="/view-admins">
+            </PrivateRoute>
+            <PrivateRoute path="/view-admins">
               <Dashboard pageTitle="View Admins">
-                <ViewAdmins/>
+                <ViewAdmins />
               </Dashboard>
-            </Route>
-            <Route path="/create-review">
+            </PrivateRoute>
+            <PrivateRoute path="/create-review">
               <Dashboard pageTitle="Give your honest review">
-                <CreateReview/>
+                <CreateReview />
               </Dashboard>
-            </Route>
-            <Route path="/all-reviews">
+            </PrivateRoute>
+            <PrivateRoute path="/all-reviews">
               <Dashboard pageTitle="All the reviews">
-                <CreateReview/>
+                <ViewReviews />
               </Dashboard>
-            </Route>
-            <Route path="/booking/service/:serviceId">
+            </PrivateRoute>
+            <PrivateRoute path="/booking/service/:serviceId">
               <NavBar />
-              <BookingService/>
+              <BookingService />
               <Footer />
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <NavBar />
               <Login></Login>

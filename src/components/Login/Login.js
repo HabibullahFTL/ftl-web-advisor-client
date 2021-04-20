@@ -58,7 +58,7 @@ const Login = () => {
                                 !loginUserDetails.isSignIn &&
                                 <div className="text-center card-body">
                                     <h3 className="mb-4">Login</h3>
-                                    <small style={{ color: 'red' }}>Error</small>
+                                    <small style={{ color: 'red' }}>{loginUserDetails.errMessage && loginUserDetails.errMessage}</small>
                                     <button className="social-login w-100 w-lg-75" onClick={handleGooleSignIn} >
                                         <img src={googleIcon} alt="" />
                                         <span>Continue with Google</span>

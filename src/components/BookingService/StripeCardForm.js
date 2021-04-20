@@ -40,7 +40,6 @@ const StripeCardForm = ({ handleBooking }) => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    console.log(bookingDetails);
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.

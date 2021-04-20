@@ -5,12 +5,44 @@ const AllOrders = () => {
     useEffect(() => {
         fetch('https://nameless-fjord-98328.herokuapp.com/all-orders')
             .then(res => res.json())
-            .then(data => setOrders(data))
+            .then(data => {
+                setOrders(data)
+            })
     }, [])
 
     const handleServiceStatus = (e) => {
-        console.log(e.target.getAttribute('data-orderid'));
-        console.log(orders);
+        const orderId =  e.target.getAttribute('data-orderid');
+        const status =  e.target.value;
+        const newOrderDetails = orders.find(order=>order._id === orderId);
+        newOrderDetails.status = status;
+        console.log(newOrderDetails);
+        fetch('https://nameless-fjord-98328.herokuapp.com/update-order/?order_id='+orderId+'&status='+status, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if (data) {
+                console.log("updated");
+            }
+        })
+    }
+    const handleDeleteOrder = (e)=>{
+        const orderId =  e.target.getAttribute('data-orderid');
+        fetch('https://nameless-fjord-98328.herokuapp.com/delete-order/?order_id='+orderId, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if (data) {
+                e.target.parentElement.parentElement.remove();
+            }
+        })
     }
     return (
         <table className="table">
@@ -36,10 +68,23 @@ const AllOrders = () => {
                                 <td>{order?.orderedAt}</td>
                                 <td>
                                     <select id="orderStatus" data-orderid={order._id} onChange={handleServiceStatus}>
-                                        <option value="pending">Pending</option>
-                                        <option value="done">Done</option>
-                                        <option value="on-going">On Going</option>
+                                        {
+                                            order.status === 'pending' ? 
+                                            <option value="pending" selected="selected" >Pending</option> :
+                                            <option value="pending" >Pending</option>
+                                        }
+                                        {
+                                            order.status === 'done' ? 
+                                            <option value="done" selected="selected" >Done</option> :
+                                            <option value="done" >Done</option>
+                                        }
+                                        {
+                                            order.status === 'on-going' ? 
+                                            <option value="on-going" selected="selected" >On Going</option> :
+                                            <option value="on-going">On Going</option>
+                                        }
                                     </select>
+                                    <button className="btn btn-danger ms-1 mt-1" data-orderid={order._id} onClick={handleDeleteOrder}>X</button>
                                 </td>
                             </tr>
                         )

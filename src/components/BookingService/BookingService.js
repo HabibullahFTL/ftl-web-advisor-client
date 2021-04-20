@@ -5,6 +5,7 @@ import StripeCardForm from './StripeCardForm';
 import './BookingService.css';
 import { UserContext } from '../../App';
 import { useParams } from 'react-router';
+import { Redirect } from 'react-router-dom';
 
 const BookingService = () => {
     const stripePromise = loadStripe('pk_test_51If81hJIyoGkNEYC7X8C3XORjIqnREXSVdODZhuLiuVJb24t5gDua1t3J40YyyLJ0SHZ3GYPHRNdsW80uLXSxud800YSZLGvDo');
@@ -16,6 +17,8 @@ const BookingService = () => {
         customerName: loginUserDetails.name,
         email: loginUserDetails.email,
         serviceDetails: {},
+        userDetails: loginUserDetails,
+        status: 'pending',
         message: ''
     })
 
@@ -33,11 +36,13 @@ const BookingService = () => {
         if (e.target.id === 'customerName') {
             const newBookingData = { ...bookingDetails };
             newBookingData.customerName = e.target.value;
+            newBookingData.userDetails = loginUserDetails;
             setBookingDetails(newBookingData)
         }
         if (e.target.id === 'email') {
             const newBookingData = { ...bookingDetails };
             newBookingData.email = e.target.value;
+            newBookingData.userDetails = loginUserDetails;
             setBookingDetails(newBookingData)
         }
     }
@@ -70,7 +75,7 @@ const BookingService = () => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="serviceTitle" className="form-label">Booking For</label>
-                        <input type="text" className="form-control" id="serviceTitle" value={bookingDetails.serviceDetails.serviceTitle} disabled />
+                        <input type="text" className="form-control" id="serviceTitle"  value={bookingDetails.serviceDetails.serviceTitle} disabled />
                     </div>
                 </div>
                 <div className="col-md-6">
@@ -79,6 +84,9 @@ const BookingService = () => {
                         <Elements stripe={stripePromise}>
                             <StripeCardForm handleBooking={[bookingDetails, setBookingDetails]} />
                         </Elements>
+                        {
+                            bookingDetails.isSuccess && <Redirect to="/all-order"/>
+                        }
                     </div>
                 </div>
             </div>

@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 const ManageServices = () => {
     const [services, setServices] = useState([]);
+    const [isUpdated,setIsUpdated] = useState(false);
     useEffect(() => {
         fetch('https://nameless-fjord-98328.herokuapp.com/all-services')
             .then(res => res.json())
             .then(data => setServices(data))
-    }, [])
+    }, [isUpdated])
     const handleServiceDelete = (e) => {
         const dataTarget = e.target;
         const serviceId = dataTarget.getAttribute('data-serviceid');
+        setIsUpdated(false);
         fetch('https://nameless-fjord-98328.herokuapp.com/delete-service/?service_id='+serviceId, {
             method: "PUT",
             headers: {
@@ -19,7 +21,8 @@ const ManageServices = () => {
         .then(res=>res.json())
         .then(data=>{
             if (data) {
-                dataTarget.parentElement.parentElement.remove();
+                // dataTarget.parentElement.parentElement.remove();
+                setIsUpdated(true);
             }
         })
     }
@@ -38,7 +41,7 @@ const ManageServices = () => {
                 {
                     services.map(service => {
                         return (
-                            <tr>
+                            <tr key={service._id}>
                                 <td>
                                     <img src={service.photo} width="80px" alt="" />
                                 </td>
@@ -46,7 +49,7 @@ const ManageServices = () => {
                                 <td>{service.serviceDescription}</td>
                                 <td>{service.createdAt}</td>
                                 <td>
-                                    <button className="btn btn-danger me-1 mb-1" data-serviceid={service._id} onClick={handleServiceDelete}><i className="fas fa-trash"></i></button>
+                                    <button className="btn btn-danger me-1 mb-1" data-serviceid={service._id} onClick={handleServiceDelete}><i data-serviceid={service._id} className="fas fa-trash"></i></button>
                                     <button className="btn btn-success me-1 mb-1"><i className="fas fa-edit"></i></button>
                                 </td>
                             </tr>

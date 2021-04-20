@@ -91,23 +91,23 @@ const CreateService = () => {
                 }
             </div>
             <div className="col-md-6">
-                <div class="mb-3">
-                    <label htmlFor="serviceTitle" class="form-label">Service Title</label>
-                    <input type="text" class="form-control" id="serviceTitle" onChange={handleServDataChange} />
+                <div className="mb-3">
+                    <label htmlFor="serviceTitle" className="form-label">Service Title</label>
+                    <input type="text" className="form-control" id="serviceTitle" onChange={handleServDataChange} />
                 </div>
-                <div class="mb-3">
-                    <label htmlFor="serviceDescription" class="form-label">Description</label>
-                    <textarea class="form-control" id="serviceDescription" onChange={handleServDataChange} ></textarea>
+                <div className="mb-3">
+                    <label htmlFor="serviceDescription" className="form-label">Description</label>
+                    <textarea className="form-control" id="serviceDescription" onChange={handleServDataChange} ></textarea>
                 </div>
             </div>
             <div className="col-md-6">
-                <div class="mb-3">
-                    <label htmlFor="serviceFee" class="form-label">Service Fee</label>
-                    <input type="number" class="form-control" id="serviceFee" onChange={handleServDataChange} />
+                <div className="mb-3">
+                    <label htmlFor="serviceFee" className="form-label">Service Fee</label>
+                    <input type="number" className="form-control" id="serviceFee" onChange={handleServDataChange} />
                 </div>
-                <div class="mb-3">
-                    <label htmlFor="servicePhoto" class="form-label">Image</label>
-                    <input type="file" class="form-control" id="servicePhoto" onChange={handleServDataChange} />
+                <div className="mb-3">
+                    <label htmlFor="servicePhoto" className="form-label">Image</label>
+                    <input type="file" className="form-control" id="servicePhoto" onChange={handleServDataChange} />
                 </div>
             </div>
             <div className="col-12 text-center">
